@@ -27,7 +27,7 @@ jobs:
         mysmg: "PVE is the best"
       - echomsg:
         mymsg: $My_NAME_VAR
-      - print_pipeline_id:
+      - print_pipeline_id
       
       
   save_hello_world_output:
