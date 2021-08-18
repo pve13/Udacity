@@ -15,6 +15,10 @@ commands:
     steps:
       - run: echo << parameters.mymsg >>
 
+  print_pipeline_id:
+    steps:
+      -run: echo $CIRCLE_WORKFLOW_ID
+
 jobs:
   print_myname:
     <<: *dockersettings
@@ -23,6 +27,8 @@ jobs:
         mysmg: "PVE is the best"
       - echomsg:
         mymsg: $My_NAME_VAR
+      - print_pipeline_id:
+      
       
   save_hello_world_output:
     <<: *dockersettings
