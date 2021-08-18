@@ -29,6 +29,7 @@ jobs:
       - echomsg:
         mymsg: $My_NAME_VAR
       - print_pipeline_id
+      - run: return 1
       
       
   save_hello_world_output:
@@ -45,6 +46,13 @@ jobs:
       - attach_workspace:
           at: ~/
       - run: cat ~/output.txt
+  
+    <<: *dockersettings
+    steps:
+      - echomsg:
+        mysmg: "It's a total failure"
+    when: on_failure
+  
 
 
 workflows:
@@ -55,3 +63,4 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
+      - when_errors
