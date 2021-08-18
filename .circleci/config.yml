@@ -15,7 +15,6 @@ commands:
     steps:
       - run: echo << parameters.mymsg >>
 
-commands:
   print_pipeline_id:
     description: juste display workflow id
     steps:
