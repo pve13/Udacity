@@ -26,10 +26,18 @@ jobs:
     steps:
       - echomsg:
         mysmg: "PVE is the best"
+
       - echomsg:
         mymsg: $My_NAME_VAR
+
       - print_pipeline_id
+
       - run: return 1
+      
+      - run:
+        name: Upload Failed Tests
+        command: echo "it's a failure"
+        when: on_fail
       
       
   save_hello_world_output:
@@ -47,15 +55,6 @@ jobs:
           at: ~/
       - run: cat ~/output.txt
   
-  when_errors:
-    <<: *dockersettings
-    steps:
-      - echomsg:
-        mysmg: "It's a total failure"
-    when: on_failure
-  
-
-
 workflows:
   welcome:
     jobs:
@@ -64,4 +63,3 @@ workflows:
       - print_output_file:
           requires:
             - save_hello_world_output
-      - when_errors
