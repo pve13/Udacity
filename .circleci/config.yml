@@ -5,12 +5,25 @@ default: &dockersettings
   docker:
     - image: circleci/node:13.8.0
 
+commands:
+  echomsg:
+    description: just display a message
+    parameters:
+      mymsg:
+        type: String
+        default: "Hello World"
+    steps:
+      - run: echo << parametrer.mymsg >>
 
 jobs:
   print_myname:
     <<: *dockersettings
     steps:
-      - run: echo $My_NAME_VAR
+      - echomsg:
+        mysmg: "PVE is the best"
+      - echomsg:
+        mymsg: $My_NAME_VAR
+      
   save_hello_world_output:
     <<: *dockersettings
     steps:
