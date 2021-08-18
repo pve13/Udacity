@@ -10,7 +10,7 @@ commands:
     description: just display a message
     parameters:
       mymsg:
-        type: String
+        type: string
         default: "Hello World"
     steps:
       - run: echo << parametrer.mymsg >>
